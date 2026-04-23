@@ -1,0 +1,74 @@
+{
+  "profile_id": "orei_hdex_8x8",
+  "name": "OREI HD-EX 8x8 HDMI Matrix",
+  "manufacturer": "OREI",
+  "model": "HD-EX 8x8 Series",
+  "device_type": "hdmi_matrix",
+  "baud_rate": 115200,
+  "data_bits": 8,
+  "stop_bits": 1,
+  "parity": "N",
+  "routing_template": "s in {input} av out {output}!",
+  "query_template": "r av out {output}!",
+  "default_inputs": 8,
+  "default_outputs": 8,
+  "commands": {
+    "power_on": {
+      "command_id": "power_on",
+      "name": "Power On",
+      "format": "text",
+      "payload": "s power 1!",
+      "line_ending": "none"
+    },
+    "power_off": {
+      "command_id": "power_off",
+      "name": "Power Off",
+      "format": "text",
+      "payload": "s power 0!",
+      "line_ending": "none"
+    },
+    "query_all_outputs": {
+      "command_id": "query_all_outputs",
+      "name": "Query All Outputs",
+      "format": "text",
+      "payload": "r av all!",
+      "line_ending": "none",
+      "is_query": true,
+      "response_patterns": [
+        {
+          "pattern": "av out (\\d+) in (\\d+)",
+          "state_key": "current_routing",
+          "value_group": 0
+        }
+      ]
+    },
+    "mute_av_on": {
+      "command_id": "mute_av_on",
+      "name": "Mute A/V On",
+      "format": "text",
+      "payload": "s mute av on!",
+      "line_ending": "none"
+    },
+    "mute_av_off": {
+      "command_id": "mute_av_off",
+      "name": "Mute A/V Off",
+      "format": "text",
+      "payload": "s mute av off!",
+      "line_ending": "none"
+    },
+    "all_follow_1": {
+      "command_id": "all_follow_1",
+      "name": "All Outputs to Input 1",
+      "format": "text",
+      "payload": "s in 1 av out all!",
+      "line_ending": "none"
+    }
+  },
+  "global_response_patterns": [
+    {
+      "pattern": "av out (\\d+) in (\\d+)",
+      "state_key": "routing",
+      "value_group": 0
+    }
+  ]
+}

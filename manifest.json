@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "updated": "2025-01-01",
+  "description": "Community serial device profiles for VDA IR Control",
+  "profiles": [
+    "projector/epson/epson_home_cinema.json",
+    "hdmi_matrix/orei/orei_hdex_8x8.json"
+  ]
+}

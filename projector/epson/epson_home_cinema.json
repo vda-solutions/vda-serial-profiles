@@ -1,0 +1,146 @@
+{
+  "profile_id": "epson_home_cinema",
+  "name": "Epson Home Cinema Projector (RS232)",
+  "manufacturer": "Epson",
+  "model": "Home Cinema Series (2350, 3200, 4010, 5050, etc.)",
+  "device_type": "projector",
+  "baud_rate": 9600,
+  "data_bits": 8,
+  "stop_bits": 1,
+  "parity": "N",
+  "commands": {
+    "power_on": {
+      "command_id": "power_on",
+      "name": "Power On",
+      "format": "text",
+      "payload": "PWR ON",
+      "line_ending": "cr"
+    },
+    "power_off": {
+      "command_id": "power_off",
+      "name": "Power Off",
+      "format": "text",
+      "payload": "PWR OFF",
+      "line_ending": "cr"
+    },
+    "hdmi1": {
+      "command_id": "hdmi1",
+      "name": "HDMI 1",
+      "format": "text",
+      "payload": "SOURCE 30",
+      "line_ending": "cr",
+      "is_input_option": true,
+      "input_value": "HDMI1"
+    },
+    "hdmi2": {
+      "command_id": "hdmi2",
+      "name": "HDMI 2",
+      "format": "text",
+      "payload": "SOURCE A0",
+      "line_ending": "cr",
+      "is_input_option": true,
+      "input_value": "HDMI2"
+    },
+    "video": {
+      "command_id": "video",
+      "name": "Video",
+      "format": "text",
+      "payload": "SOURCE 41",
+      "line_ending": "cr",
+      "is_input_option": true,
+      "input_value": "Video"
+    },
+    "usb": {
+      "command_id": "usb",
+      "name": "USB",
+      "format": "text",
+      "payload": "SOURCE 52",
+      "line_ending": "cr",
+      "is_input_option": true,
+      "input_value": "USB"
+    },
+    "lan": {
+      "command_id": "lan",
+      "name": "LAN",
+      "format": "text",
+      "payload": "SOURCE 53",
+      "line_ending": "cr",
+      "is_input_option": true,
+      "input_value": "LAN"
+    },
+    "query_power": {
+      "command_id": "query_power",
+      "name": "Query Power",
+      "format": "text",
+      "payload": "PWR?",
+      "line_ending": "cr",
+      "is_query": true,
+      "response_patterns": [
+        {
+          "pattern": "PWR=(\\d+)",
+          "state_key": "power",
+          "value_group": 1,
+          "value_map": {
+            "00": "off",
+            "01": "on",
+            "02": "warming",
+            "03": "cooling",
+            "04": "standby",
+            "05": "abnormal"
+          }
+        }
+      ]
+    },
+    "query_source": {
+      "command_id": "query_source",
+      "name": "Query Source",
+      "format": "text",
+      "payload": "SOURCE?",
+      "line_ending": "cr",
+      "is_query": true,
+      "response_patterns": [
+        {
+          "pattern": "SOURCE=([0-9A-F]+)",
+          "state_key": "current_input",
+          "value_group": 1,
+          "value_map": {
+            "30": "HDMI1",
+            "A0": "HDMI2",
+            "41": "Video",
+            "52": "USB",
+            "53": "LAN"
+          }
+        }
+      ]
+    },
+    "mute_on": {
+      "command_id": "mute_on",
+      "name": "Mute On",
+      "format": "text",
+      "payload": "MUTE ON",
+      "line_ending": "cr"
+    },
+    "mute_off": {
+      "command_id": "mute_off",
+      "name": "Mute Off",
+      "format": "text",
+      "payload": "MUTE OFF",
+      "line_ending": "cr"
+    },
+    "volume_up": {
+      "command_id": "volume_up",
+      "name": "Volume Up",
+      "format": "text",
+      "payload": "VOL UP",
+      "line_ending": "cr"
+    },
+    "volume_down": {
+      "command_id": "volume_down",
+      "name": "Volume Down",
+      "format": "text",
+      "payload": "VOL DOWN",
+      "line_ending": "cr"
+    }
+  },
+  "global_response_patterns": []
+}
